@@ -28,7 +28,8 @@ binance-futures-bot/
 ├── streamlit_app.py       # Web Dashboard
 ├── .env.example           # Environment Template
 ├── requirements.txt       # Dependencies
-└── README.md              # Project Documentation
+└── README.md            # Project Documentation
+└── Dockerfile            # Deployment
 ## Quick Start
 
 🛠️ Quick Start
