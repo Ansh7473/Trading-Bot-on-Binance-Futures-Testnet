@@ -21,7 +21,7 @@ A professional-grade trading bot with a sleek **Streamlit interface** designed f
 * 💰 **Account Management** – Live tracking of your balance, margin, and open positions.
 * 📜 **Order History** – Easy access to your recent trade history and logs.
 * 🛑 **Risk Management** – One-click **"Close All Positions"** panic button for instant exit.
-* ⚡ **Testnet Optimized** – Hardcoded for safety; trade with zero risk on the Binance Testnet.
+
 
 ---
 
