@@ -1,7 +1,6 @@
 # 🚀 Binance Futures Testnet Trading Bot
 
-**A professional-grade, Streamlit-powered trading bot for Binance Futures Testnet.**  
-Test strategies, manage positions, and monitor risk – all without risking real capital.
+A professional-grade trading bot with a sleek **Streamlit interface** designed for safe, real-time trading on the Binance Futures Testnet. Perfect for testing strategies and managing positions without risking real capital.
 
 ---
 
@@ -13,182 +12,109 @@ Test strategies, manage positions, and monitor risk – all without risking real
 
 ---
 
+
 ## ✨ Features
 
-| ✅ | Description |
-|---|-------------|
-| **📊 Real-time Market Data** | Live tickers, order-book depth, candlestick charts (1m–1M) |
-| **🛎️ Advanced Order Types** | MARKET, LIMIT, STOP, STOP-MARKET, TAKE-PROFIT, TAKE-PROFIT-MARKET, TRAILING-STOP-MARKET + built-in TP/SL |
-| **📈 Interactive UI** | Clean Streamlit dashboard – responsive on desktop & mobile |
-| **💰 Account Management** | Balance, equity, margin utilization, isolated & crossed margin |
-| **📜 Order History** | Real-time updates, export to CSV/Excel, status tracking |
-| **🛑 Risk Controls** | One-click “Close All Positions”, position-size calculator, margin-call alerts |
-| **🔐 Secure API Wrapper** | HMAC-SHA256 signing, auto-reconnect, rate-limit & retry handling |
-| **⚙️ Configurable** | Environment-based (testnet/mainnet), custom log level, Docker ready |
-| **🧪 Test-driven** | Unit tests for core client & order logic (`pytest`) |
-| **🤝 Contribute** | Clear contribution guide, CI badge, pre-commit hooks |
+* 📊 **Real-time Market Data** – Live price tracking for major cryptocurrencies.
+* 🛎️ **Advanced Order Placement** – Support for **MARKET** and **LIMIT** orders with integrated **Take Profit (TP)** and **Stop Loss (SL)**.
+* 📈 **Interactive UI** – A modern, clean web dashboard built with Streamlit.
+* 💰 **Account Management** – Live tracking of your balance, margin, and open positions.
+* 📜 **Order History** – Easy access to your recent trade history and logs.
+* 🛑 **Risk Management** – One-click **"Close All Positions"** panic button for instant exit.
+* ⚡ **Testnet Optimized** – Hardcoded for safety; trade with zero risk on the Binance Testnet.
 
 ---
 
 ## 📂 Project Structure
+
+```text
 binance-futures-bot/
-├─ bot/                        # Core trading logic
-│  ├─ client.py                # Binance REST & WebSocket wrapper
-│  ├─ orders.py                # Order execution (TP/SL, trailing)
-│  ├─ validators.py            # Input safety checks
-│  ├─ logging_config.py        # Centralised logger
-│  └─ cli.py                   # CLI entry-point
-├─ utils/
-│  ├─ helpers.py               # Re-usable helpers
-│  └─ calculations.py          # P&L, risk, leverage utils
-├─ tests/
-│  ├─ test_client.py
-│  └─ test_orders.py
-├─ streamlit_app.py            # Streamlit dashboard (main)
-├─ .env.example                # Template for secrets
-├─ requirements.txt            # Python dependencies
-├─ Dockerfile                  # Container image
-├─ docker-compose.yml
-└─ README.md
+├── bot/                   # Core Logic
+│   ├── client.py          # Binance API Wrapper
+│   ├── orders.py          # Order Execution Service
+│   ├── validators.py      # Input Safety Checks
+│   ├── logging_config.py  # Logging Setup
+│   └── cli.py             # Command Line Interface
+├── streamlit_app.py       # Web Dashboard
+├── .env.example           # Environment Template
+├── requirements.txt       # Dependencies
+└── README.md              # Project Documentation
+## Quick Start
 
+🛠️ Quick Start
+Follow these steps to get your trading bot up and running in minutes.
 
+1. Clone the Repository
+Bash
 
-
----
-
-## 🛠️ Quick Start
-
-> **All commands assume you are in the project root.**  
-> Windows → `PowerShell` (or `cmd`), macOS/Linux → `bash`/`zsh`.
-
-### 1️⃣ Clone the repository
-
-```bash
 git clone https://github.com/Ansh7473/Trading-Bot-on-Binance-Futures-Testnet
 cd Trading-Bot-on-Binance-Futures-Testnet
+2. Set Up Virtual Environment
+Windows:
 
-### 1️⃣ Clone the repository
+Bash
 
-```bash
-### 2️⃣ Create a virtual environment & install deps
-
-```bash
-Bash# Windows
 python -m venv .venv
 .venv\Scripts\activate
+Mac/Linux:
 
-# macOS / Linux
+Bash
+
 python3 -m venv .venv
 source .venv/bin/activate
+3. Install Dependencies
+Bash
 
-# Install required packages
 pip install -r requirements.txt
+4. Configure API Keys
+Go to Binance Futures Testnet.
 
-### 3️⃣ Generate your Testnet API credentials
+Log in and navigate to API Management.
 
-Visit Binance Futures Testnet and log in.
-Navigate to API Management → Create API.
-Enable Futures permission (no withdrawals needed).
-Copy the API Key and Secret.
+Create a new API Key and Secret.
 
-### 4️⃣ Configure environment variables
-Bash# Copy the template and edit in your favorite editor
-cp .env.example .env
-Edit .env:
-textBINANCE_API_KEY=your_testnet_api_key
+Create a file named .env in the root folder and add your credentials:
+
+Code snippet
+
+BINANCE_API_KEY=your_testnet_api_key
 BINANCE_API_SECRET=your_testnet_api_secret
-TESTNET_MODE=true                # set false for mainnet
-LOG_LEVEL=INFO                  # DEBUG, INFO, WARNING, ERROR
-Never commit .env – it is ignored via .gitignore.
-### 5️⃣ Run the dashboard (recommended)
-Bashstreamlit run streamlit_app.py
-Open the URL shown in the console (usually http://localhost:8501).
-All market data, order entry, positions & logs update in real-time.
-### 6️⃣ Or use the CLI
-Bashpython -m bot.cli place-order \
-    --symbol BTCUSDT \
-    --side BUY \
-    --type MARKET \
-    --quantity 0.001
-Other CLI commands (--help shows the full list):
-Bashpython -m bot.cli get-balance
-python -m bot.cli get-positions
-python -m bot.cli cancel-all
-python -m bot.cli set-leverage --symbol BTCUSDT --leverage 25
-### 7️⃣ (Optional) Run via Docker
-Bashdocker compose up -d   # builds image and starts the Streamlit service
-Access the UI at http://localhost:8501.
+🚀 Usage
+🖥️ Web Interface (Recommended)
+Launch the interactive dashboard to manage trades visually:
 
-🖥️ Dashboard Walk-through
+Bash
 
-Section,What you’ll see
-Market,"Ticker, depth chart, selected-pair candlesticks"
-Order Panel,"Symbol, side, type, qty, price, TP/SL fields, submit button"
-Portfolio,"Wallet balance, margin ratio, isolated-margin toggle"
-Open Positions,"Qty, entry price, mark price, unrealised P&L, close button"
-Order History,"Recent fills, status, fees, CSV export"
-Alerts,"Margin-call warning, order-rejection details, connection health"
+streamlit run streamlit_app.py
+⌨️ Command Line Interface
+Execute orders directly from the terminal:
 
-⌨️ CLI Quick Reference
-Bash# Place any order
-python -m bot.cli place-order \
-    --symbol ETHUSDT \
-    --side SELL \
-    --type LIMIT \
-    --price 1850 \
-    --quantity 0.5 \
-    --take_profit 1800 \
-    --stop_loss 1900
+Bash
 
-# View live balance
-python -m bot.cli get-balance
-
-# List open positions
-python -m bot.cli get-positions
-
-# Cancel a single order
-python -m bot.cli cancel-order --order-id 12345678
-
-# Cancel *all* open orders for a symbol
-python -m bot.cli cancel-all --symbol BTCUSDT
-
-# Set isolated margin mode (per-symbol)
-python -m bot.cli set-margin-type --symbol BTCUSDT --type ISOLATED
-
-# Adjust leverage
-python -m bot.cli set-leverage --symbol BTCUSDT --leverage 30
-All commands perform input validation and report friendly error messages.
-
+python -m bot.cli place-order
 🛡️ Safety & Risk Management
+Input Validation: Every order is checked for valid syntax and bounds before being sent to the exchange.
 
-Input validation against Binance’s PRICE_FILTER, LOT_SIZE, and PERCENT_PRICE rules.
-Leverage caps respect the exchange-provided maximum for each symbol.
-Margin-call detection (real-time via WebSocket) – UI shows a red banner and emits a system beep.
-Close-All button instantly sends market orders to liquidate every open position.
-Rate-limit awareness – wrapper automatically backs off on HTTP 429/418 responses and retries with exponential delay.
-Logging – every request/response, including timestamps, signatures (hashed), and error traces, are written to logs/trading_bot.log.
-Testnet-only mode – the TESTNET_MODE flag forces the client to use Binance’s sandbox endpoints; you cannot accidentally trade real funds.
+Error Handling: Detailed logging and visual alerts for failed API calls or insufficient margin.
 
+Testnet Only: The bot is pre-configured for the Testnet environment to ensure no real funds are ever used.
 
 ⚠️ Important Notes
+[!WARNING]
 
-Educational/Testing Use Only – Real-world crypto futures are high-risk. Even on Testnet, practice disciplined risk management.
-Do not share your .env or API secrets.
-Enable IP Whitelisting on Binance for added security.
-Never enable withdrawal permission on a Testnet key (the sandbox does not support withdrawals, but it’s a good habit).
-API keys are case-sensitive – copy them exactly.
-Network latency can cause order rejections; the bot retries idempotently where safe.
-Backtest strategies before live deployment – the bot is merely an execution layer.
+Educational Use Only: This software is for educational and testing purposes. Cryptocurrency trading involves significant risk. Always start with small position sizes even on Testnet.
 
+Privacy: Never share your .env file or commit it to GitHub.
 
-🤝 Contributing
+API Security: Ensure your Testnet API keys have "Futures" permissions enabled.
 
-Fork the repo & create a feature branch.
-Follow PEP-8 styling (black, flake8).
-Write unit tests for any new logic (pytest).
-Submit a PR with a clear description and screenshots (if UI changes).
+🤝 Support & Contribution
+Found a bug or have a feature request?
 
-All contributions are welcome! See CONTRIBUTING.md for detailed guidelines.
+Check the Issues page.
 
-📜 License
-This project is licensed under the MIT License – see the LICENSE file for details.
+Open a new issue with detailed steps to reproduce.
+
+Pull requests are welcome!
+
+Created by Ansh7473
