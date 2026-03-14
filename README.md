@@ -91,7 +91,8 @@ Execute orders directly from the terminal:
 
 Bash
 
-python -m bot.cli place-order
+python cli.py interactive
+
 🛡️ Safety & Risk Management
 Input Validation: Every order is checked for valid syntax and bounds before being sent to the exchange.
 
