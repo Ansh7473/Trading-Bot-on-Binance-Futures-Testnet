@@ -1,0 +1,7 @@
+python-binance>=1.0.20
+typer[all]>=0.9.0
+python-dotenv>=1.0.0
+questionary>=2.0.0
+rich>=13.0.0
+streamlit>=1.28.0
+pandas>=1.5.0

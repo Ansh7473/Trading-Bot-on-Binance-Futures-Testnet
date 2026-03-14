@@ -1,0 +1,11 @@
+trading_bot/
+├─ bot/
+│   ├─ __init__.py
+│   ├─ client.py          # thin wrapper around python‑binance Futures client
+│   ├─ orders.py          # business‑logic for order placement
+│   ├─ validators.py      # input validation helpers
+│   └─ logging_config.py  # structured file + console logger
+├─ cli.py                  # Typer based command‑line entry point
+├─ .env.example            # template for your API keys
+├─ requirements.txt
+└─ README.md
