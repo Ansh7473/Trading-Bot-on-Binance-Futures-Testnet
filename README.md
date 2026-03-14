@@ -67,6 +67,9 @@ binance-futures-bot/
 git clone https://github.com/Ansh7473/Trading-Bot-on-Binance-Futures-Testnet
 cd Trading-Bot-on-Binance-Futures-Testnet
 
+### 1️⃣ Clone the repository
+
+```bash
 ### 2️⃣ Create a virtual environment & install deps
 
 ```bash
