@@ -23,3 +23,115 @@
 2026-03-14 19:38:05,936 | INFO     | orders          | ✅ Order placed: #12810048191 - NEW
 2026-03-14 19:38:05,936 | INFO     | orders          | ✅ Order accepted: #12810048191 - NEW
 2026-03-14 19:38:06,382 | INFO     | orders          | ✅ Connected to Binance Futures Testnet
+2026-03-14 19:49:36,221 | ERROR    | orders          | API credentials missing - check .env file
+2026-03-14 19:49:36,224 | ERROR    | __main__        | Error getting balance: 'TradingApp' object has no attribute 'client'
+2026-03-14 19:49:36,225 | ERROR    | __main__        | Error getting positions: 'TradingApp' object has no attribute 'client'
+2026-03-14 19:49:36,230 | ERROR    | __main__        | Error getting price for BTCUSDT: 'TradingApp' object has no attribute 'client'
+2026-03-14 19:49:36,231 | ERROR    | __main__        | Error getting symbol info: 'TradingApp' object has no attribute 'client'
+2026-03-14 19:49:41,331 | ERROR    | __main__        | Error getting balance: 'TradingApp' object has no attribute 'client'
+2026-03-14 19:49:41,333 | ERROR    | __main__        | Error getting positions: 'TradingApp' object has no attribute 'client'
+2026-03-14 19:49:41,335 | ERROR    | __main__        | Error getting price for BTCUSDT: 'TradingApp' object has no attribute 'client'
+2026-03-14 19:49:41,336 | ERROR    | __main__        | Error getting symbol info: 'TradingApp' object has no attribute 'client'
+2026-03-14 19:50:45,724 | ERROR    | __main__        | Error getting balance: 'TradingApp' object has no attribute 'client'
+2026-03-14 19:50:45,726 | ERROR    | __main__        | Error getting positions: 'TradingApp' object has no attribute 'client'
+2026-03-14 19:50:45,728 | ERROR    | __main__        | Error getting price for BTCUSDT: 'TradingApp' object has no attribute 'client'
+2026-03-14 19:50:45,729 | ERROR    | __main__        | Error getting symbol info: 'TradingApp' object has no attribute 'client'
+2026-03-14 19:54:10,753 | INFO     | orders          | ✅ Connected to Binance Futures Testnet
+2026-03-14 19:54:18,277 | INFO     | orders          | ✅ Connected to Binance Futures Testnet
+2026-03-14 19:54:21,456 | INFO     | orders          | ✅ Connected to Binance Futures Testnet
+2026-03-14 19:54:24,487 | INFO     | orders          | ✅ Connected to Binance Futures Testnet
+2026-03-14 19:54:24,488 | INFO     | orders          | 🛎️  MARKET BUY: 0.003 BTCUSDT
+2026-03-14 19:54:24,489 | INFO     | orders          | Placing MARKET BUY: 0.003 BTCUSDT @ market
+2026-03-14 19:54:25,224 | INFO     | orders          | ✅ Order placed: #12810276922 - NEW
+2026-03-14 19:54:25,225 | INFO     | orders          | ✅ Order accepted: #12810276922 - NEW
+2026-03-14 19:54:25,986 | INFO     | orders          | ✅ Connected to Binance Futures Testnet
+2026-03-14 19:55:55,912 | INFO     | orders          | ✅ Connected to Binance Futures Testnet
+2026-03-14 19:55:56,342 | ERROR    | __main__        | Unhandled exception: 'NoneType' object has no attribute 'strip'
+Traceback (most recent call last):
+  File "D:\CURSOR\javascript.html\python\ai project\Binance ai bot\Trading-Bot-on-Binance-Futures-Testnet\cli.py", line 81, in main
+    app()
+    ~~~^^
+  File "D:\CURSOR\javascript.html\python\ai project\Binance ai bot\Trading-Bot-on-Binance-Futures-Testnet\.venv\Lib\site-packages\typer\main.py", line 1152, in __call__
+    raise e
+  File "D:\CURSOR\javascript.html\python\ai project\Binance ai bot\Trading-Bot-on-Binance-Futures-Testnet\.venv\Lib\site-packages\typer\main.py", line 1135, in __call__
+    return get_command(self)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "D:\CURSOR\javascript.html\python\ai project\Binance ai bot\Trading-Bot-on-Binance-Futures-Testnet\.venv\Lib\site-packages\click\core.py", line 1485, in __call__
+    return self.main(*args, **kwargs)
+           ~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "D:\CURSOR\javascript.html\python\ai project\Binance ai bot\Trading-Bot-on-Binance-Futures-Testnet\.venv\Lib\site-packages\typer\core.py", line 795, in main
+    return _main(
+        self,
+    ...<6 lines>...
+        **extra,
+    )
+  File "D:\CURSOR\javascript.html\python\ai project\Binance ai bot\Trading-Bot-on-Binance-Futures-Testnet\.venv\Lib\site-packages\typer\core.py", line 188, in _main
+    rv = self.invoke(ctx)
+  File "D:\CURSOR\javascript.html\python\ai project\Binance ai bot\Trading-Bot-on-Binance-Futures-Testnet\.venv\Lib\site-packages\click\core.py", line 1873, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+                           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\CURSOR\javascript.html\python\ai project\Binance ai bot\Trading-Bot-on-Binance-Futures-Testnet\.venv\Lib\site-packages\click\core.py", line 1269, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\CURSOR\javascript.html\python\ai project\Binance ai bot\Trading-Bot-on-Binance-Futures-Testnet\.venv\Lib\site-packages\click\core.py", line 824, in invoke
+    return callback(*args, **kwargs)
+  File "D:\CURSOR\javascript.html\python\ai project\Binance ai bot\Trading-Bot-on-Binance-Futures-Testnet\.venv\Lib\site-packages\typer\main.py", line 1514, in wrapper
+    return callback(**use_params)
+  File "D:\CURSOR\javascript.html\python\ai project\Binance ai bot\Trading-Bot-on-Binance-Futures-Testnet\cli.py", line 77, in interactive
+    interactive_place_order()
+    ~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "D:\CURSOR\javascript.html\python\ai project\Binance ai bot\Trading-Bot-on-Binance-Futures-Testnet\bot\interactive.py", line 281, in interactive_place_order
+    symbol = _ask_symbol()
+  File "D:\CURSOR\javascript.html\python\ai project\Binance ai bot\Trading-Bot-on-Binance-Futures-Testnet\bot\interactive.py", line 176, in _ask_symbol
+    return validate_symbol(raw.strip())
+                           ^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'strip'
+2026-03-14 19:56:18,304 | ERROR    | __main__        | Error getting balance: 'TradingApp' object has no attribute 'client'
+2026-03-14 19:56:18,305 | ERROR    | __main__        | Error getting positions: 'TradingApp' object has no attribute 'client'
+2026-03-14 19:56:18,308 | ERROR    | __main__        | Error getting price for BTCUSDT: 'TradingApp' object has no attribute 'client'
+2026-03-14 19:56:18,319 | ERROR    | __main__        | Error getting symbol info: 'TradingApp' object has no attribute 'client'
+2026-03-14 19:56:18,319 | ERROR    | __main__        | Error getting symbol info: 'TradingApp' object has no attribute 'client'
+2026-03-14 19:56:18,321 | ERROR    | __main__        | Error getting symbol info: 'TradingApp' object has no attribute 'client'
+2026-03-14 19:56:18,321 | ERROR    | __main__        | Error getting symbol info: 'TradingApp' object has no attribute 'client'
+2026-03-14 19:56:24,833 | ERROR    | __main__        | Error getting balance: 'TradingApp' object has no attribute 'client'
+2026-03-14 19:56:24,835 | ERROR    | __main__        | Error getting positions: 'TradingApp' object has no attribute 'client'
+2026-03-14 19:56:24,838 | ERROR    | __main__        | Error getting price for BTCUSDT: 'TradingApp' object has no attribute 'client'
+2026-03-14 19:56:24,846 | ERROR    | __main__        | Error getting symbol info: 'TradingApp' object has no attribute 'client'
+2026-03-14 19:56:24,847 | ERROR    | __main__        | Error getting symbol info: 'TradingApp' object has no attribute 'client'
+2026-03-14 19:56:24,849 | ERROR    | __main__        | Error getting symbol info: 'TradingApp' object has no attribute 'client'
+2026-03-14 19:56:24,849 | ERROR    | __main__        | Error getting symbol info: 'TradingApp' object has no attribute 'client'
+2026-03-14 19:57:36,859 | INFO     | orders          | ✅ Connected to Binance Futures Testnet
+2026-03-14 19:57:37,296 | INFO     | orders          | ✅ Connected to Binance Futures Testnet
+2026-03-14 19:58:27,959 | ERROR    | orders          | Failed to initialise Binance client: BinanceFuturesClient.__init__() got an unexpected keyword argument 'api_key'
+2026-03-14 19:58:27,962 | ERROR    | __main__        | Attempted to fetch balance without a client
+2026-03-14 19:58:27,963 | ERROR    | __main__        | Attempted to fetch positions without a client
+2026-03-14 19:58:27,967 | ERROR    | __main__        | Attempted to fetch price without a client
+2026-03-14 19:58:27,977 | ERROR    | __main__        | Attempted to fetch symbol info without a client
+2026-03-14 19:58:27,978 | ERROR    | __main__        | Attempted to fetch symbol info without a client
+2026-03-14 19:58:27,979 | ERROR    | __main__        | Attempted to fetch symbol info without a client
+2026-03-14 19:58:27,980 | ERROR    | __main__        | Attempted to fetch symbol info without a client
+2026-03-14 19:59:30,879 | INFO     | orders          | ✅ Connected to Binance Futures Testnet
+2026-03-14 19:59:31,270 | INFO     | orders          | ✅ Connected to Binance Futures Testnet
+2026-03-14 19:59:42,564 | INFO     | orders          | 🛎️  MARKET BUY: 0.01 BTCUSDT
+2026-03-14 19:59:43,286 | INFO     | orders          | ✅ Order accepted: #12810348909 - NEW
+2026-03-14 20:00:13,372 | INFO     | orders          | 🛎️  MARKET BUY: 0.01 BTCUSDT
+2026-03-14 20:00:13,916 | INFO     | orders          | ✅ Order accepted: #12810358110 - NEW
+2026-03-14 20:00:21,228 | INFO     | orders          | 🛎️  MARKET SELL: 0.031 BTCUSDT
+2026-03-14 20:00:21,575 | INFO     | orders          | ✅ Order accepted: #12810359144 - NEW
+2026-03-14 20:02:11,134 | INFO     | orders          | ✅ Connected to Binance Futures Testnet
+2026-03-14 20:02:11,496 | INFO     | orders          | ✅ Connected to Binance Futures Testnet
+2026-03-14 20:02:20,035 | INFO     | orders          | 🛎️  MARKET BUY: 0.01 BTCUSDT
+2026-03-14 20:02:20,778 | INFO     | orders          | ✅ Order accepted: #12810388231 - NEW
+2026-03-14 20:02:34,719 | INFO     | orders          | 🛎️  MARKET SELL: 0.01 ETHUSDT
+2026-03-14 20:02:35,024 | INFO     | orders          | ✅ Order accepted: #8542982071 - NEW
+2026-03-14 20:02:50,692 | INFO     | orders          | 🛎️  MARKET BUY: 0.01 ETHUSDT
+2026-03-14 20:02:51,335 | INFO     | orders          | ✅ Order accepted: #8542983871 - NEW
+2026-03-14 20:02:51,336 | INFO     | orders          | 🛎️  MARKET SELL: 0.01 BTCUSDT
+2026-03-14 20:02:51,857 | INFO     | orders          | ✅ Order accepted: #12810394211 - NEW
+2026-03-14 20:03:30,196 | INFO     | orders          | ✅ Connected to Binance Futures Testnet
+2026-03-14 20:03:34,539 | INFO     | orders          | ✅ Connected to Binance Futures Testnet
+2026-03-14 20:03:37,271 | INFO     | orders          | ✅ Connected to Binance Futures Testnet
+2026-03-14 20:03:40,157 | INFO     | orders          | ✅ Connected to Binance Futures Testnet
+2026-03-14 20:03:40,158 | INFO     | orders          | 🛎️  MARKET BUY: 0.002 BTCUSDT
+2026-03-14 20:03:40,930 | INFO     | orders          | ✅ Order accepted: #12810405481 - NEW
+2026-03-14 20:03:41,374 | INFO     | orders          | ✅ Connected to Binance Futures Testnet

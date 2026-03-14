@@ -12,51 +12,72 @@ from binance.exceptions import (
 )
 from dotenv import load_dotenv
 
+# ------------------------------------------------------------------
+# Logging helpers (keep the same names you use elsewhere)
+# ------------------------------------------------------------------
 from .logging_config import get_order_logger, get_logger
 
-# Use specialized loggers
+# Use a dedicated logger for order‑related messages
 order_logger = get_order_logger()
-debug_logger = get_logger("client")  # For debug messages
+# Debug‑only logger (kept separate so we don’t pollute the console)
+debug_logger = get_logger("client")
+
 
 class BinanceFuturesClient:
     """
-    Wrapper around python‑binance Futures client that logs every
-    request/response automatically and adds a `reduce_only` flag.
+    Wrapper around python‑binance Futures client.
+    It can be instantiated **with** explicit API credentials
+    (useful for the Streamlit UI) **or** fall back to the
+    values stored in a .env file.
     """
-    def __init__(self):
-        load_dotenv()                     # pull credentials from .env
-        api_key = os.getenv("BINANCE_API_KEY")
-        api_secret = os.getenv("BINANCE_API_SECRET")
 
+    def __init__(self, api_key: str | None = None, api_secret: str | None = None):
+        # Load .env for fallback values
+        load_dotenv()
+
+        # If the caller supplied a key/secret use them,
+        # otherwise read from the environment.
+        if api_key is None:
+            api_key = os.getenv("BINANCE_API_KEY")
+        if api_secret is None:
+            api_secret = os.getenv("BINANCE_API_SECRET")
+
+        # ------------------------------------------------------------------
+        # Validate that we actually have credentials
+        # ------------------------------------------------------------------
         if not api_key or not api_secret:
-            order_logger.error("API credentials missing - check .env file")
+            order_logger.error(
+                "API credentials missing – provide BINANCE_API_KEY & BINANCE_API_SECRET"
+            )
             raise EnvironmentError("Missing Binance credentials")
 
-        # `testnet=True` forces the futures base URL to https://testnet.binancefuture.com
+        # testnet=True forces the futures base URL to the Binance test‑net
         self.client = Client(api_key, api_secret, testnet=True)
 
         order_logger.info("✅ Connected to Binance Futures Testnet")
 
     # ------------------------------------------------------------------
-    # Generic request logger – useful for debugging
+    # Generic request logger – useful for debugging (now uses debug_logger)
     # ------------------------------------------------------------------
     def _log_and_handle(self, fn, *args, **kwargs) -> Dict[str, Any]:
         try:
-            debug_logger.debug(f"API call: {fn.__name__}")
+            debug_logger.debug(
+                f"Calling Binance API: {fn.__name__} args={args} kwargs={kwargs}"
+            )
             response = fn(*args, **kwargs)
-            debug_logger.debug(f"API response: {response}")
+            debug_logger.debug(f"Binance response: {response}")
             return response
         except BinanceAPIException as e:
-            order_logger.error(f"API error: {e.message}")
+            order_logger.error(f"Binance API error {e.status_code}: {e.message}")
             raise
         except BinanceRequestException as e:
-            order_logger.error(f"Network error: {e}")
+            order_logger.error(f"Network/request error: {e}")
             raise
         except BinanceOrderException as e:
             order_logger.error(f"Order rejected: {e.message}")
             raise
         except Exception as e:
-            order_logger.error(f"Unexpected error: {e}")
+            order_logger.exception(f"Unexpected error while calling Binance: {e}")
             raise
 
     # ------------------------------------------------------------------
@@ -73,14 +94,12 @@ class BinanceFuturesClient:
         reduce_only: bool = False,
     ) -> Dict[str, Any]:
         """
-        Wraps `futures_create_order`.  All arguments map 1‑to‑1 to the Binance
+        Wraps `futures_create_order`. All arguments map 1‑to‑1 to the Binance
         endpoint (price is sent only for LIMIT orders, reduceOnly is optional).
         """
-        
-        # Log the order attempt
-        price_str = f" @ ${price}" if price else " @ market"
-        order_logger.info(f"Placing {order_type} {side}: {quantity} {symbol}{price_str}")
-        
+        # ------------------------------------------------------------------
+        # Build the payload
+        # ------------------------------------------------------------------
         payload: Dict[str, Any] = {
             "symbol": symbol,
             "side": side,
@@ -98,10 +117,8 @@ class BinanceFuturesClient:
             )
         # MARKET orders ignore price / timeInForce – Binance will ignore them.
 
-        response = self._log_and_handle(self.client.futures_create_order, **payload)
-        
-        # Log successful order
-        if 'orderId' in response:
-            order_logger.info(f"✅ Order placed: #{response['orderId']} - {response['status']}")
-        
-        return response
+        # Log the request (debug only)
+        debug_logger.debug(f"Prepared payload for {order_type} order: {payload}")
+
+        # Send the request via the generic logger/handler
+        return self._log_and_handle(self.client.futures_create_order, **payload)
