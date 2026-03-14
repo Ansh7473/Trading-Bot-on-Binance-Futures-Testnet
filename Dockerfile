@@ -16,7 +16,7 @@ USER appuser
 COPY requirements.txt .
 COPY streamlit_app.py .
 COPY bot/ ./bot/
-COPY "Webshare 10 proxies.txt" "Webshare 10 proxies.txt"
+COPY "webshare_proxies.txt" "webshare_proxies.txt"
 
 # ---- Install Python dependencies ----------------------------------
 RUN pip install --no-cache-dir -r requirements.txt
