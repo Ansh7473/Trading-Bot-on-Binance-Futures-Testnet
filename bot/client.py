@@ -3,6 +3,7 @@
 # --------------------------------------------------------------
 import os
 from typing import Dict, Any
+from pathlib import Path
 
 from binance.client import Client
 from binance.exceptions import (
@@ -13,47 +14,65 @@ from binance.exceptions import (
 from dotenv import load_dotenv
 
 # ------------------------------------------------------------------
-# Logging helpers (keep the same names you use elsewhere)
+# Logging helpers (keep your existing loggers)
 # ------------------------------------------------------------------
 from .logging_config import get_order_logger, get_logger
 
-# Use a dedicated logger for order‑related messages
-order_logger = get_order_logger()
-# Debug‑only logger (kept separate so we don’t pollute the console)
-debug_logger = get_logger("client")
+order_logger = get_order_logger()          # user‑visible messages
+debug_logger = get_logger("client")        # low‑level debug messages
 
 
 class BinanceFuturesClient:
     """
     Wrapper around python‑binance Futures client.
-    It can be instantiated **with** explicit API credentials
-    (useful for the Streamlit UI) **or** fall back to the
-    values stored in a .env file.
-    """
 
-    def __init__(self, api_key: str | None = None, api_secret: str | None = None):
-        # Load .env for fallback values
+    * **api_key / api_secret** – can be passed explicitly (from the Streamlit UI) or
+      fall back to a .env file (your original behaviour).
+    * **proxy_url** – optional HTTP/HTTPS proxy in the form
+      ``http://user:pass@host:port``.
+      When a proxy is supplied every request made by the python‑binance
+      library is routed through it.
+    """
+    def __init__(
+        self,
+        api_key: str | None = None,
+        api_secret: str | None = None,
+        proxy_url: str | None = None,          # <-- NEW
+    ):
+        # Load .env only for fallback values
         load_dotenv()
 
-        # If the caller supplied a key/secret use them,
-        # otherwise read from the environment.
         if api_key is None:
             api_key = os.getenv("BINANCE_API_KEY")
         if api_secret is None:
             api_secret = os.getenv("BINANCE_API_SECRET")
 
-        # ------------------------------------------------------------------
-        # Validate that we actually have credentials
-        # ------------------------------------------------------------------
+        # --------------------------------------------------------------
+        # Validate credentials
+        # --------------------------------------------------------------
         if not api_key or not api_secret:
             order_logger.error(
                 "API credentials missing – provide BINANCE_API_KEY & BINANCE_API_SECRET"
             )
             raise EnvironmentError("Missing Binance credentials")
 
-        # testnet=True forces the futures base URL to the Binance test‑net
-        self.client = Client(api_key, api_secret, testnet=True)
+        # --------------------------------------------------------------
+        # Build request‑params dict for the python‑binance client.
+        # The library forwards this dict directly to ``requests``.
+        # --------------------------------------------------------------
+        request_params: Dict[str, Any] = {}
+        if proxy_url:
+            # ``proxies`` expects a dict of scheme → URL
+            request_params["proxies"] = {"https": proxy_url}
+            order_logger.info(f"🔌 Using proxy: {proxy_url}")
 
+        # ``testnet=True`` forces the futures base URL to https://testnet.binancefuture.com
+        self.client = Client(
+            api_key,
+            api_secret,
+            testnet=True,
+            requests_params=request_params,   # <-- proxy (or empty dict)
+        )
         order_logger.info("✅ Connected to Binance Futures Testnet")
 
     # ------------------------------------------------------------------
@@ -94,12 +113,8 @@ class BinanceFuturesClient:
         reduce_only: bool = False,
     ) -> Dict[str, Any]:
         """
-        Wraps `futures_create_order`. All arguments map 1‑to‑1 to the Binance
-        endpoint (price is sent only for LIMIT orders, reduceOnly is optional).
+        Wraps ``futures_create_order``. All arguments map 1‑to‑1 to Binance.
         """
-        # ------------------------------------------------------------------
-        # Build the payload
-        # ------------------------------------------------------------------
         payload: Dict[str, Any] = {
             "symbol": symbol,
             "side": side,
@@ -109,16 +124,8 @@ class BinanceFuturesClient:
         }
 
         if order_type == "LIMIT":
-            payload.update(
-                {
-                    "price": price,
-                    "timeInForce": time_in_force,
-                }
-            )
-        # MARKET orders ignore price / timeInForce – Binance will ignore them.
+            payload.update({"price": price, "timeInForce": time_in_force})
 
-        # Log the request (debug only)
         debug_logger.debug(f"Prepared payload for {order_type} order: {payload}")
 
-        # Send the request via the generic logger/handler
         return self._log_and_handle(self.client.futures_create_order, **payload)
