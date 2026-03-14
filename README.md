@@ -87,10 +87,9 @@ source .venv/bin/activate
  Install Dependencies
 ```
 
+### **Step 5:** How To Obtain Keys 
 
-pip install -r requirements.txt
-Configure API Keys
-Go to Binance Futures Testnet.
+Go to Binance Futures Testnet. 
 
 Log in and navigate to API Management.
 
