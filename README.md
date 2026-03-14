@@ -38,7 +38,7 @@ Follow these steps to get your trading bot up and running in minutes.
 1. Clone the Repository
 Bash
 
-git clone [https://github.com/Ansh7473/Trading-Bot-on-Binance-Futures-Testnet](https://github.com/Ansh7473/Trading-Bot-on-Binance-Futures-Testnet)
+git clone https://github.com/Ansh7473/Trading-Bot-on-Binance-Futures-Testnet
 cd Trading-Bot-on-Binance-Futures-Testnet
 2. Set Up Virtual Environment
 Windows:
