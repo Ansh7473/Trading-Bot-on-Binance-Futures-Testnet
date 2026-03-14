@@ -86,9 +86,9 @@ python3 -m venv .venv
 source .venv/bin/activate
  Install Dependencies
 ```
-
 ### **Step 5:** How To Obtain Keys 
 
+```bash
 Go to Binance Futures Testnet. 
 
 Log in and navigate to API Management.
@@ -97,24 +97,26 @@ Create a new API Key and Secret.
 
 Create a file named .env in the root folder and add your credentials:
 
-Code snippet
+```
+### **Step 6:** How To Use
 
-BINANCE_API_KEY=your_testnet_api_key
-BINANCE_API_SECRET=your_testnet_api_secret
 🚀 Usage
 🖥️ Web Interface (Recommended)
 Launch the interactive dashboard to manage trades visually:
-
-Bash
-
+```bash
 streamlit run streamlit_app.py
-⌨️ Command Line Interface
-Execute orders directly from the terminal:
 
-Bash
+
+```
+⌨️ Command Line Interface
+Execute orders directly from the terminal
+```bash
+
 
 python cli.py interactive
 
+```
+### *** INFO
 🛡️ Safety & Risk Management
 Input Validation: Every order is checked for valid syntax and bounds before being sent to the exchange.
 
