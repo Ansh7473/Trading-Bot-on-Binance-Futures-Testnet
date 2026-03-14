@@ -3,32 +3,33 @@
 # --------------------------------------------------------------
 FROM python:3.12-slim
 
-# ---- System deps (needed for pandas, binance, etc.) ----------
+# ---- System dependencies -------------------------------------
 RUN apt-get update && apt-get install -y --no-install-recommends \
         build-essential gcc git libssl-dev libffi-dev \
     && rm -rf /var/lib/apt/lists/*
 
-# ---- Create a non‑root user (good practice) ----------
+# ---- Create a non-root user ----------------------------------
 RUN useradd -m appuser
 WORKDIR /home/appuser
+
+# ---- Add local bin to PATH for the user ----------------------
+ENV PATH="/home/appuser/.local/bin:${PATH}"
+
+# ---- Switch to non-root user ---------------------------------
 USER appuser
 
-# ---- Copy the Python requirements file -------------------------
+# ---- Copy requirements and install dependencies --------------
 COPY requirements.txt .
-
-# ---- Install Python dependencies (this creates the `streamlit` command) ----
 RUN pip install --no-cache-dir -r requirements.txt
 
-# ---- Copy the rest of the source code -------------------------
+# ---- Copy source code ----------------------------------------
 COPY streamlit_app.py .
 COPY bot/ ./bot/
-# If you still want to ship a proxy list, place the file in the repo root
-# COPY webshare_proxies.txt webshare_proxies.txt    # <-- optional, no quotes
-
-# ---- Expose the Streamlit port (default 8501) ---------------
+COPY "webshare_proxies.txt" "webshare_proxies.txt"
+# ---- Expose port ---------------------------------------------
 EXPOSE 8501
 
-# ---- Run the app (Render, Railway, Fly all inject $PORT) ----
+# ---- Run the app ---------------------------------------------
 ENV PORT=8501
 CMD streamlit run streamlit_app.py \
     --server.port $PORT \
