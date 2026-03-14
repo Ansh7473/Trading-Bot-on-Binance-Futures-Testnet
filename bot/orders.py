@@ -25,8 +25,12 @@ class OrderService:
     2. Call BinanceFuturesClient
     3. Convert Binance response into a friendly `OrderResult`
     """
-    def __init__(self):
-        self.client = BinanceFuturesClient()
+    def __init__(self, api_key: str | None = None, api_secret: str | None = None, proxy_url: str | None = None):
+        self.client = BinanceFuturesClient(
+            api_key=api_key, 
+            api_secret=api_secret, 
+            proxy_url=proxy_url
+        )
 
     def place_order(self,
                     symbol: str,
