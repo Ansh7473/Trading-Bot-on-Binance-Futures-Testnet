@@ -222,3 +222,27 @@ AttributeError: 'NoneType' object has no attribute 'strip'
 2026-03-14 20:40:12,705 | INFO     | orders          | ✅ Connected to Binance Futures Testnet
 2026-03-14 20:40:17,530 | INFO     | orders          | 🛎️  MARKET BUY: 0.01 BTCUSDT
 2026-03-14 20:40:18,363 | INFO     | orders          | ✅ Order accepted: #12810909292 - NEW
+2026-03-14 20:41:38,106 | INFO     | orders          | 🔌 Using proxy: http://fdlnlnax:s70acmozdxn8@31.59.20.176:6754
+2026-03-14 20:41:39,405 | INFO     | orders          | ✅ Connected to Binance Futures Testnet
+2026-03-14 20:41:39,910 | INFO     | orders          | ✅ Connected to Binance Futures Testnet
+2026-03-14 20:41:39,963 | INFO     | orders          | 🔌 Using proxy: http://fdlnlnax:s70acmozdxn8@31.59.20.176:6754
+2026-03-14 20:41:41,205 | INFO     | orders          | ✅ Connected to Binance Futures Testnet
+2026-03-14 20:41:41,636 | INFO     | orders          | ✅ Connected to Binance Futures Testnet
+2026-03-14 20:41:47,667 | INFO     | orders          | 🔌 Using proxy: http://fdlnlnax:s70acmozdxn8@31.59.20.176:6754
+2026-03-14 20:41:49,012 | INFO     | orders          | ✅ Connected to Binance Futures Testnet
+2026-03-14 20:41:49,412 | INFO     | orders          | ✅ Connected to Binance Futures Testnet
+2026-03-14 20:41:55,369 | INFO     | orders          | 🛎️  MARKET SELL: 0.026 BTCUSDT
+2026-03-14 20:41:55,958 | INFO     | orders          | ✅ Order accepted: #12810929735 - NEW
+2026-03-14 20:44:37,100 | INFO     | orders          | 🔌 Using proxy: http://fdlnlnax:s70acmozdxn8@31.59.20.176:6754
+2026-03-14 20:44:38,625 | INFO     | orders          | ✅ Connected to Binance Futures Testnet
+2026-03-14 20:44:39,168 | INFO     | orders          | ✅ Connected to Binance Futures Testnet
+2026-03-14 20:44:44,437 | INFO     | orders          | 🛎️  MARKET BUY: 0.01 BTCUSDT
+2026-03-14 20:44:45,288 | INFO     | orders          | ✅ Order accepted: #12810967441 - NEW
+2026-03-14 20:44:48,980 | INFO     | orders          | 🔌 Using proxy: http://fdlnlnax:s70acmozdxn8@31.59.20.176:6754
+2026-03-14 20:44:50,455 | INFO     | orders          | ✅ Connected to Binance Futures Testnet
+2026-03-14 20:44:51,168 | INFO     | orders          | ✅ Connected to Binance Futures Testnet
+2026-03-14 20:44:56,779 | INFO     | orders          | 🛎️  MARKET SELL: 0.01 BTCUSDT
+2026-03-14 20:44:57,471 | INFO     | orders          | ✅ Order accepted: #12810970584 - NEW
+2026-03-14 20:50:36,104 | INFO     | orders          | 🔌 Using proxy: http://fdlnlnax:s70acmozdxn8@31.59.20.176:6754
+2026-03-14 20:50:37,409 | INFO     | orders          | ✅ Connected to Binance Futures Testnet
+2026-03-14 20:50:37,885 | INFO     | orders          | ✅ Connected to Binance Futures Testnet
