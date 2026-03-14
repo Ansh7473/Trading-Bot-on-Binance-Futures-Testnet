@@ -90,7 +90,7 @@ def credentials_box():
                     proxy_lines = uploaded.getvalue().decode().splitlines()
                 else:
                     # Fallback to the bundled list shipped with the repo
-                    default_path = Path("Webshare 10 proxies.txt")
+                    default_path = Path("Webshare_10_proxies.txt")
                     if default_path.is_file():
                         with open(default_path, "r") as f:
                             proxy_lines = [l.strip() for l in f if l.strip()]
@@ -99,7 +99,7 @@ def credentials_box():
 
                 if not proxy_lines:
                     st.warning(
-                        "⚠️ No proxies found. Upload a file or keep the bundled `Webshare 10 proxies.txt`."
+                        "⚠️ No proxies found. Upload a file or keep the bundled `Webshare_10_proxies.txt`."
                     )
                 else:
                     # Show a nice drop‑down so the user can pick one
