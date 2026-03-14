@@ -81,11 +81,12 @@ BINANCE_API_SECRET=your_testnet_api_secret
 ```
 
 
-
+```bash
 python3 -m venv .venv
 source .venv/bin/activate
  Install Dependencies
-Bash
+```
+
 
 pip install -r requirements.txt
 Configure API Keys
