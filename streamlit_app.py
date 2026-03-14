@@ -2,6 +2,7 @@
 import streamlit as st
 import pandas as pd
 from datetime import datetime
+from pathlib import Path
 
 # Import your existing bot components
 from bot.client import BinanceFuturesClient
@@ -32,10 +33,24 @@ st.set_page_config(
 )
 
 # ----------------------------------------------------------------------
-# Sidebar – Binance API credentials UI
+# Helper – turn a line like host:port:user:pass into a proper proxy URL
+# ----------------------------------------------------------------------
+def _make_proxy_url(line: str) -> str:
+    """
+    Convert ``host:port:user:pass`` → ``http://user:pass@host:port``.
+    The python‑binance client expects a normal HTTP/HTTPS proxy URL.
+    """
+    parts = line.strip().split(":")
+    if len(parts) != 4:
+        raise ValueError("Proxy line must be host:port:user:pass")
+    host, port, user, pwd = parts
+    return f"http://{user}:{pwd}@{host}:{port}"
+
+# ----------------------------------------------------------------------
+# Sidebar – Binance API credentials UI + optional proxy settings
 # ----------------------------------------------------------------------
 def credentials_box():
-    """Render a sidebar where the user can paste their API key/secret."""
+    """Render the sidebar where the user can paste API credentials and (optionally) a proxy."""
     with st.sidebar:
         st.header("🔑 Binance API Credentials")
         st.caption(
@@ -43,28 +58,72 @@ def credentials_box():
             "They are never written to disk or logged."
         )
 
+        # -------------------- API Key / Secret --------------------
         api_key_input = st.text_input("API Key", type="password", key="api_key_input")
         api_secret_input = st.text_input(
             "API Secret", type="password", key="api_secret_input"
         )
 
-        # --------------------------------------------------------------
-        # Save credentials
-        # --------------------------------------------------------------
+        # -------------------- Proxy Settings --------------------
+        with st.expander("🔌 Proxy Settings (optional)"):
+            use_proxy = st.checkbox("Use a proxy", value=False, key="use_proxy")
+            proxy_url = None
+
+            if use_proxy:
+                # 1️⃣  Upload a custom proxy list (TXT, each line host:port:user:pass)
+                uploaded = st.file_uploader(
+                    "Upload proxy list (TXT)", type=["txt"], key="proxy_file"
+                )
+                if uploaded is not None:
+                    proxy_lines = uploaded.getvalue().decode().splitlines()
+                else:
+                    # 2️⃣  Fallback to the bundled list shipped with the repo
+                    default_path = Path("Webshare 10 proxies.txt")
+                    if default_path.is_file():
+                        with open(default_path, "r") as f:
+                            proxy_lines = [
+                                line.strip() for line in f if line.strip()
+                            ]
+                    else:
+                        proxy_lines = []
+
+                if not proxy_lines:
+                    st.warning(
+                        "⚠️ No proxies found. Upload a file or place `Webshare 10 proxies.txt` next to the script."
+                    )
+                else:
+                    # Show a nicer dropdown: “1: 31.59.20.176:6754:fdlnlnax:s70acmozdxn8”
+                    display = [f"{i+1}: {line}" for i, line in enumerate(proxy_lines)]
+                    choice = st.selectbox(
+                        "Pick a proxy from the list", options=display, key="proxy_choice"
+                    )
+                    idx = display.index(choice)
+                    raw_line = proxy_lines[idx]
+                    try:
+                        proxy_url = _make_proxy_url(raw_line)
+                        st.success(f"✅ Proxy selected: {choice}")
+                    except Exception as exc:
+                        st.error(f"❌ Invalid proxy format: {exc}")
+
+        # -------------------- Save Credentials --------------------
         if st.button("💾 Save Credentials"):
             if not api_key_input or not api_secret_input:
                 st.error("Both API Key and Secret are required.")
             else:
-                # Store in session_state – lives in memory only
+                # Store the credentials in session_state (memory only)
                 st.session_state.api_key = api_key_input.strip()
                 st.session_state.api_secret = api_secret_input.strip()
-                st.success("✅ Credentials saved – re‑initialising app")
-                # <-- NEW stable API
-                st.rerun()
 
-        # --------------------------------------------------------------
-        # Clear credentials
-        # --------------------------------------------------------------
+                # Store the proxy URL if the user opted‑in and a proxy was chosen
+                if use_proxy and proxy_url:
+                    st.session_state.proxy_url = proxy_url
+                else:
+                    st.session_state.pop("proxy_url", None)   # remove any old proxy
+
+                st.success("✅ Credentials (and proxy, if any) saved – re‑initialising app")
+                st.rerun()   # <-- stable API
+
+        # -------------------- Clear Credentials --------------------
         if st.session_state.get("api_key"):
             if st.button("🗑️ Clear Credentials"):
                 for k in [
@@ -72,6 +131,7 @@ def credentials_box():
                     "api_secret",
                     "api_key_input",
                     "api_secret_input",
+                    "proxy_url",
                 ]:
                     if k in st.session_state:
                         del st.session_state[k]
@@ -79,22 +139,30 @@ def credentials_box():
                 # Remove the app instance so we don’t keep a stale client
                 if "app" in st.session_state:
                     del st.session_state.app
-                # <-- NEW stable API
                 st.rerun()
 
+
 # ----------------------------------------------------------------------
-# Core TradingApp class – now receives API credentials explicitly
+# Core TradingApp class – now receives optional proxy_url
 # ----------------------------------------------------------------------
 class TradingApp:
-    def __init__(self, api_key: str | None = None, api_secret: str | None = None):
+    def __init__(
+        self,
+        api_key: str | None = None,
+        api_secret: str | None = None,
+        proxy_url: str | None = None,   # <-- NEW
+    ):
         """
         Initialise the Binance client only when we have valid credentials.
-        If credentials are missing / invalid we keep `self.client = None`
-        so the UI can show a friendly warning instead of crashing.
+        The optional ``proxy_url`` is forwarded to ``BinanceFuturesClient``.
         """
         try:
-            # Pass the credentials (or None – client will fall back to .env)
-            self.client = BinanceFuturesClient(api_key=api_key, api_secret=api_secret)
+            # Pass the optional proxy URL (or None) together with the credentials
+            self.client = BinanceFuturesClient(
+                api_key=api_key,
+                api_secret=api_secret,
+                proxy_url=proxy_url,
+            )
             self.order_service = OrderService()
             st.success("✅ Connected to Binance Futures Testnet")
         except Exception as e:
@@ -220,6 +288,7 @@ class TradingApp:
             logger.error(f"Error placing TP/SL order: {e}")
             raise
 
+
 # ----------------------------------------------------------------------
 # MAIN APP
 # ----------------------------------------------------------------------
@@ -236,24 +305,29 @@ def main():
         st.warning(
             "🔑 Please enter your Binance API Key & Secret in the sidebar to use the bot."
         )
-        return  # Stop execution – the rest of the UI needs a client
+        return
 
     # --------------------------------------------------------------
     # 3️⃣  Initialise (or re‑initialise) the TradingApp **once**
     # --------------------------------------------------------------
     if "app" not in st.session_state:
-        # First time – create the app with the credentials we just received
+        # First time – create the app with credentials **and** proxy (if any)
         st.session_state.app = TradingApp(
             api_key=st.session_state.api_key,
             api_secret=st.session_state.api_secret,
+            proxy_url=st.session_state.get("proxy_url"),   # <-- pass proxy
         )
     else:
-        # Credentials might have changed (e.g., user cleared and re‑entered)
-        # Re‑create the app if the stored client is None
-        if st.session_state.app.client is None:
+        # Re‑create if the client disappeared or the proxy changed
+        if (
+            st.session_state.app.client is None
+            or st.session_state.get("proxy_url")
+            != getattr(st.session_state.app.client, "proxy_url", None)
+        ):
             st.session_state.app = TradingApp(
                 api_key=st.session_state.api_key,
                 api_secret=st.session_state.api_secret,
+                proxy_url=st.session_state.get("proxy_url"),
             )
 
     app = st.session_state.app
@@ -270,7 +344,6 @@ def main():
         st.header("💰 Account Info")
 
         if st.button("🔄 Refresh Data"):
-            # Public API – safe to use
             st.rerun()
 
         # USDT balance

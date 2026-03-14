@@ -135,3 +135,90 @@ AttributeError: 'NoneType' object has no attribute 'strip'
 2026-03-14 20:03:40,158 | INFO     | orders          | 🛎️  MARKET BUY: 0.002 BTCUSDT
 2026-03-14 20:03:40,930 | INFO     | orders          | ✅ Order accepted: #12810405481 - NEW
 2026-03-14 20:03:41,374 | INFO     | orders          | ✅ Connected to Binance Futures Testnet
+2026-03-14 20:10:22,410 | ERROR    | orders          | Failed to initialise Binance client: 'latin-1' codec can't encode characters in position 93-180: ordinal not in range(256)
+2026-03-14 20:10:22,415 | ERROR    | __main__        | Attempted to fetch balance without a client
+2026-03-14 20:10:22,416 | ERROR    | __main__        | Attempted to fetch positions without a client
+2026-03-14 20:10:22,421 | ERROR    | __main__        | Attempted to fetch price without a client
+2026-03-14 20:10:22,428 | ERROR    | __main__        | Attempted to fetch symbol info without a client
+2026-03-14 20:10:22,429 | ERROR    | __main__        | Attempted to fetch symbol info without a client
+2026-03-14 20:10:22,431 | ERROR    | __main__        | Attempted to fetch symbol info without a client
+2026-03-14 20:10:22,431 | ERROR    | __main__        | Attempted to fetch symbol info without a client
+2026-03-14 20:11:27,395 | ERROR    | orders          | Failed to initialise Binance client: 'latin-1' codec can't encode characters in position 93-180: ordinal not in range(256)
+2026-03-14 20:11:27,400 | ERROR    | __main__        | Attempted to fetch balance without a client
+2026-03-14 20:11:27,401 | ERROR    | __main__        | Attempted to fetch positions without a client
+2026-03-14 20:11:27,406 | ERROR    | __main__        | Attempted to fetch price without a client
+2026-03-14 20:11:27,414 | ERROR    | __main__        | Attempted to fetch symbol info without a client
+2026-03-14 20:11:27,414 | ERROR    | __main__        | Attempted to fetch symbol info without a client
+2026-03-14 20:11:27,416 | ERROR    | __main__        | Attempted to fetch symbol info without a client
+2026-03-14 20:11:27,417 | ERROR    | __main__        | Attempted to fetch symbol info without a client
+2026-03-14 20:11:33,968 | ERROR    | orders          | Failed to initialise Binance client: 'latin-1' codec can't encode characters in position 93-180: ordinal not in range(256)
+2026-03-14 20:11:34,359 | INFO     | orders          | ✅ Connected to Binance Futures Testnet
+2026-03-14 20:11:34,773 | INFO     | orders          | ✅ Connected to Binance Futures Testnet
+2026-03-14 20:12:40,126 | INFO     | orders          | ✅ Connected to Binance Futures Testnet
+2026-03-14 20:12:40,445 | INFO     | orders          | ✅ Connected to Binance Futures Testnet
+2026-03-14 20:12:41,296 | ERROR    | __main__        | Error getting balance: APIError(code=-1022): Signature for this request is not valid.
+2026-03-14 20:12:41,556 | ERROR    | __main__        | Error getting positions: APIError(code=-1022): Signature for this request is not valid.
+2026-03-14 20:12:45,417 | ERROR    | __main__        | Error getting balance: APIError(code=-1022): Signature for this request is not valid.
+2026-03-14 20:12:45,641 | ERROR    | __main__        | Error getting positions: APIError(code=-1022): Signature for this request is not valid.
+2026-03-14 20:12:54,086 | INFO     | orders          | ✅ Connected to Binance Futures Testnet
+2026-03-14 20:12:54,436 | INFO     | orders          | ✅ Connected to Binance Futures Testnet
+2026-03-14 20:12:55,165 | ERROR    | __main__        | Error getting balance: APIError(code=-1022): Signature for this request is not valid.
+2026-03-14 20:12:55,797 | ERROR    | __main__        | Error getting positions: APIError(code=-1022): Signature for this request is not valid.
+2026-03-14 20:13:00,231 | ERROR    | __main__        | Error getting balance: APIError(code=-1022): Signature for this request is not valid.
+2026-03-14 20:13:00,460 | ERROR    | __main__        | Error getting positions: APIError(code=-1022): Signature for this request is not valid.
+2026-03-14 20:13:02,611 | INFO     | orders          | 🛎️  MARKET BUY: 0.01 BTCUSDT
+2026-03-14 20:13:03,479 | INFO     | orders          | ✅ Order accepted: #12810534928 - NEW
+2026-03-14 20:13:07,637 | ERROR    | __main__        | Error getting balance: APIError(code=-1022): Signature for this request is not valid.
+2026-03-14 20:13:08,289 | ERROR    | __main__        | Error getting positions: APIError(code=-1022): Signature for this request is not valid.
+2026-03-14 20:13:47,087 | ERROR    | __main__        | Error getting balance: APIError(code=-1022): Signature for this request is not valid.
+2026-03-14 20:13:47,297 | ERROR    | __main__        | Error getting positions: APIError(code=-1022): Signature for this request is not valid.
+2026-03-14 20:13:53,051 | ERROR    | __main__        | Error getting balance: APIError(code=-1022): Signature for this request is not valid.
+2026-03-14 20:13:53,766 | ERROR    | __main__        | Error getting balance: APIError(code=-1022): Signature for this request is not valid.
+2026-03-14 20:13:54,354 | ERROR    | __main__        | Error getting positions: APIError(code=-1022): Signature for this request is not valid.
+2026-03-14 20:14:17,029 | ERROR    | __main__        | Error getting balance: APIError(code=-2015): Invalid API-key, IP, or permissions for action
+2026-03-14 20:14:17,568 | ERROR    | __main__        | Error getting positions: APIError(code=-2015): Invalid API-key, IP, or permissions for action
+2026-03-14 20:14:22,030 | ERROR    | __main__        | Error getting balance: APIError(code=-2015): Invalid API-key, IP, or permissions for action
+2026-03-14 20:14:22,179 | ERROR    | __main__        | Error getting balance: APIError(code=-2015): Invalid API-key, IP, or permissions for action
+2026-03-14 20:14:22,414 | ERROR    | __main__        | Error getting positions: APIError(code=-2015): Invalid API-key, IP, or permissions for action
+2026-03-14 20:14:26,350 | ERROR    | __main__        | Error getting balance: APIError(code=-2015): Invalid API-key, IP, or permissions for action
+2026-03-14 20:14:26,581 | ERROR    | __main__        | Error getting positions: APIError(code=-2015): Invalid API-key, IP, or permissions for action
+2026-03-14 20:14:28,006 | ERROR    | __main__        | Error getting balance: APIError(code=-2015): Invalid API-key, IP, or permissions for action
+2026-03-14 20:14:28,275 | ERROR    | __main__        | Error getting positions: APIError(code=-2015): Invalid API-key, IP, or permissions for action
+2026-03-14 20:14:31,402 | ERROR    | __main__        | Error getting positions: APIError(code=-2015): Invalid API-key, IP, or permissions for action
+2026-03-14 20:14:34,518 | ERROR    | __main__        | Error getting balance: APIError(code=-2015): Invalid API-key, IP, or permissions for action
+2026-03-14 20:14:35,157 | ERROR    | __main__        | Error getting positions: APIError(code=-2015): Invalid API-key, IP, or permissions for action
+2026-03-14 20:14:53,739 | INFO     | orders          | ✅ Connected to Binance Futures Testnet
+2026-03-14 20:14:58,974 | INFO     | orders          | ✅ Connected to Binance Futures Testnet
+2026-03-14 20:15:01,730 | INFO     | orders          | ✅ Connected to Binance Futures Testnet
+2026-03-14 20:15:04,724 | INFO     | orders          | ✅ Connected to Binance Futures Testnet
+2026-03-14 20:15:04,724 | INFO     | orders          | 🛎️  MARKET BUY: 0.002 BTCUSDT
+2026-03-14 20:15:05,419 | ERROR    | orders          | Binance API error 401: Invalid API-key, IP, or permissions for action
+2026-03-14 20:15:05,419 | ERROR    | orders          | ❌ Order failed: APIError(code=-2015): Invalid API-key, IP, or permissions for action
+2026-03-14 20:16:09,402 | INFO     | orders          | ✅ Connected to Binance Futures Testnet
+2026-03-14 20:16:14,617 | INFO     | orders          | ✅ Connected to Binance Futures Testnet
+2026-03-14 20:16:19,046 | INFO     | orders          | ✅ Connected to Binance Futures Testnet
+2026-03-14 20:16:22,091 | INFO     | orders          | ✅ Connected to Binance Futures Testnet
+2026-03-14 20:16:22,092 | INFO     | orders          | 🛎️  MARKET BUY: 0.002 BTCUSDT
+2026-03-14 20:16:22,531 | INFO     | orders          | ✅ Order accepted: #12810582670 - NEW
+2026-03-14 20:16:23,147 | INFO     | orders          | ✅ Connected to Binance Futures Testnet
+2026-03-14 20:17:01,942 | INFO     | orders          | ✅ Connected to Binance Futures Testnet
+2026-03-14 20:17:02,259 | INFO     | orders          | ✅ Connected to Binance Futures Testnet
+2026-03-14 20:24:13,537 | ERROR    | orders          | Failed to initialise Binance client: BinanceFuturesClient.__init__() got an unexpected keyword argument 'proxy_url'
+2026-03-14 20:24:13,540 | ERROR    | __main__        | Attempted to fetch balance without a client
+2026-03-14 20:24:13,541 | ERROR    | __main__        | Attempted to fetch positions without a client
+2026-03-14 20:24:13,544 | ERROR    | __main__        | Attempted to fetch price without a client
+2026-03-14 20:37:05,987 | INFO     | orders          | ✅ Connected to Binance Futures Testnet
+2026-03-14 20:37:10,442 | INFO     | orders          | ✅ Connected to Binance Futures Testnet
+2026-03-14 20:37:13,529 | INFO     | orders          | ✅ Connected to Binance Futures Testnet
+2026-03-14 20:37:16,038 | INFO     | orders          | ✅ Connected to Binance Futures Testnet
+2026-03-14 20:37:16,039 | INFO     | orders          | 🛎️  MARKET BUY: 0.002 BTCUSDT
+2026-03-14 20:37:16,459 | INFO     | orders          | ✅ Order accepted: #12810867696 - NEW
+2026-03-14 20:37:17,206 | INFO     | orders          | ✅ Connected to Binance Futures Testnet
+2026-03-14 20:40:01,377 | INFO     | orders          | 🔌 Using proxy: http://fdlnlnax:s70acmozdxn8@31.59.20.176:6754
+2026-03-14 20:40:02,945 | INFO     | orders          | ✅ Connected to Binance Futures Testnet
+2026-03-14 20:40:03,430 | INFO     | orders          | ✅ Connected to Binance Futures Testnet
+2026-03-14 20:40:11,091 | INFO     | orders          | 🔌 Using proxy: http://fdlnlnax:s70acmozdxn8@31.59.20.176:6754
+2026-03-14 20:40:12,380 | INFO     | orders          | ✅ Connected to Binance Futures Testnet
+2026-03-14 20:40:12,705 | INFO     | orders          | ✅ Connected to Binance Futures Testnet
+2026-03-14 20:40:17,530 | INFO     | orders          | 🛎️  MARKET BUY: 0.01 BTCUSDT
+2026-03-14 20:40:18,363 | INFO     | orders          | ✅ Order accepted: #12810909292 - NEW
