@@ -44,23 +44,19 @@ binance-futures-bot/
 🛠️ Quick Start
 Follow these steps to get your trading bot up and running in minutes.
 
-1. Clone the Repository
-
+ Clone the Repository
+```
 git clone https://github.com/Ansh7473/Trading-Bot-on-Binance-Futures-Testnet
 cd Trading-Bot-on-Binance-Futures-Testnet
 2. Set Up Virtual Environment
 Windows:
 
+```
 
-python -m venv .venv
-.venv\Scripts\activate
-Mac/Linux:
-
-B
 
 python3 -m venv .venv
 source .venv/bin/activate
-3. Install Dependencies
+ Install Dependencies
 Bash
 
 pip install -r requirements.txt
