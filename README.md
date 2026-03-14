@@ -91,7 +91,7 @@ source .venv/bin/activate
 ```bash
 Go to Binance Futures Testnet. 
 
-Log in and navigate to API Management.
+Log in https://demo.binance.com/en/my/wallet/demo/main and navigate to API Management.
 
 Create a new API Key and Secret.
 
