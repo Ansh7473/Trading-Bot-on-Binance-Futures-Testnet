@@ -124,7 +124,7 @@ Error Handling: Detailed logging and visual alerts for failed API calls or insuf
 
 Testnet Only: The bot is pre-configured for the Testnet environment to ensure no real funds are ever used.
 
-⚠️ Important Notes
+### ***⚠️ Important Notes
 [!WARNING]
 
 Educational Use Only: This software is for educational and testing purposes. Cryptocurrency trading involves significant risk. Always start with small position sizes even on Testnet.
@@ -133,7 +133,7 @@ Privacy: Never share your .env file or commit it to GitHub.
 
 API Security: Ensure your Testnet API keys have "Futures" permissions enabled.
 
-🤝 Support & Contribution
+### ***🤝 Support & Contribution
 Found a bug or have a feature request?
 
 Check the Issues page.
@@ -142,4 +142,4 @@ Open a new issue with detailed steps to reproduce.
 
 Pull requests are welcome!
 
-Created by Ansh7473
+### ***Created by Ansh7473
